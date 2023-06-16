@@ -49,11 +49,11 @@ body {
 }
 
 .card:hover~.card {
-  transform: translateX(180px);
+  transform: translateX(280px);
 }
 
 .card:not(:first-child) {
-  margin-left: -200px;
+  margin-left: -300px;
 }
 
 .card-author {
@@ -100,11 +100,15 @@ h2:hover {
 }
 
 header {
+  height: 100vh;
+}
+
+.header-image {
   margin-bottom: auto;
   margin-bottom: 20px;
 }
 
-header h3 {
+.header-image h3 {
   font-size: 14px;
   margin: 0 0 1rem ;
   color: #7a7a8c;
@@ -116,21 +120,39 @@ h2 {
   cursor: default;
 }
 
-header.header {
+.header-image {
   padding: 1em;
   margin-bottom: 1em;
   padding-bottom: 3.5em;
   text-align: center;
-  clip-path: polygon(50% 0, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0);
-  background-image: url('https://media.discordapp.net/attachments/1014797874149740564/1118531298496090112/iccee0_cyber_punk_style_landscape_4k_ec5f3323-63f8-428a-9caf-f9c2bf3e1249.png?width=1186&height=593');
+  clip-path: polygon(50% 0, 100% 0, 100% 70%, 50% 100%, 0 70%, 0 0);
+  background-image: url('./images/backdrops/backdrop.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin: none;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 1550px) {
+  .header-image {
+    background-image: url('./images/backdrops/wide.png');
+    background-position: center;
+  }
+}
+
+@media screen and (min-width: 2550px) {
+  .header-image {
+    background-image: url('./images/backdrops/ultra-wide.png');
+    background-position: right;
+  }
 }
 
 .logo {
   border-radius: 50%;
+}
+
+.header-text {
+  font-size: 50px;
 }
 
 .header-text:hover {
@@ -141,27 +163,33 @@ header.header {
   -webkit-text-fill-color: transparent;
 }
 
-.header-text {
-  cursor: default;
-}
-
-p {
-  cursor: default;
-}
-
-div {
-  cursor: default;
-}
-
-svg {
-  cursor: default;
-}
-
 @media screen and (max-width: 700px) {
-  header.header {
+  .header-image {
       clip-path: polygon(50% 0px, 100% 0px, 99.72% 85.75%, 50% 100%, 5px 85.75%, 0px 0px);  
   }
   .logo {
     width: 70%;
   }
+}
+
+
+.about {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin: 0 20%;
+  text-align: center;
+}
+
+.about h2 {
+  text-align: center;
+}
+
+.about ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about li {
+  margin-bottom: 10px;
 }
