@@ -26,13 +26,13 @@ export default function Home() {
                   )} Years
                 </li>
                 <li>Ruswil, Switzerland</li>
-                <li></li>
               </ul>
             </div>
           </div>
         </section>
       </header>
 
+      <h2 class="projects-header">Projects</h2>
       <section class="card-list">
         <article class="card">
           <header class="card-header">
