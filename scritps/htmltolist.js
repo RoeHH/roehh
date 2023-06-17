@@ -1,3 +1,5 @@
+import "https://deno.land/x/dotenv/load.ts";
+
 function convertHTMLtoJSON(htmlString) {
   const monthStartIndex = htmlString.indexOf('<h3>') + 4;
   const monthEndIndex = htmlString.indexOf('</h3>');
@@ -9,27 +11,46 @@ function convertHTMLtoJSON(htmlString) {
 
   const descriptionStartIndex = htmlString.indexOf('<p>', titleEndIndex) + 3;
   const descriptionEndIndex = htmlString.indexOf('</p>', descriptionStartIndex);
-  const description = htmlString.substring(descriptionStartIndex, descriptionEndIndex).trim();
+  const description1 = htmlString.substring(descriptionStartIndex, descriptionEndIndex).trim();
 
-  const repositoryStartIndex = htmlString.indexOf('<a href="', descriptionEndIndex) + 9;
+  const descriptionStartIndex2 = htmlString.indexOf('<p>', descriptionEndIndex + 1) + 3;
+  const descriptionEndIndex2 = htmlString.indexOf('</p>', descriptionStartIndex2);
+  const description2 = htmlString.substring(descriptionStartIndex2, descriptionEndIndex2).trim();
+
+  const repositoryStartIndex = htmlString.indexOf('<a href="', descriptionEndIndex2) + 9;
   const repositoryEndIndex = htmlString.indexOf('">', repositoryStartIndex);
   const repository = htmlString.substring(repositoryStartIndex, repositoryEndIndex);
 
   const appStartIndex = htmlString.indexOf('<a href="', repositoryEndIndex) + 9;
   const appEndIndex = htmlString.indexOf('">', appStartIndex);
-  const app = htmlString.substring(appStartIndex, appEndIndex);
-
+  let app = undefined;
+  if (appStartIndex != 8)
+    app = htmlString.substring(appStartIndex, appEndIndex);
 
   const json = {
     month: month,
     title: title,
-    description: description,
+    description1: description1,
+    description2: description2,
     repository: repository,
-    app: app
+    app
   };
 
   return json;
 }
+
+
+const st = (new TextDecoder("utf-8").decode(await Deno.readFile('./routes/index.tsx'))).split('<article class="card">');
+
+st.shift();
+
+console.log(st.length);
+
+const json = st.map((htmlString) => convertHTMLtoJSON(htmlString));
+
+Deno.writeFileSync('./data/projects.json', new TextEncoder().encode(JSON.stringify(json, null, 2)))
+
+
 
 const htmlString = `
 <article class="card">
@@ -59,3 +80,4 @@ const htmlString = `
 
 const jsonResult = convertHTMLtoJSON(htmlString);
 console.log(JSON.stringify(jsonResult, null, 2));
+
