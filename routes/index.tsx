@@ -15,7 +15,7 @@ interface Project {
 
 export const handler: Handlers<{projects: Project[], user: User | undefined}, CtxState> = {
   async GET(_req, ctx) {
-    const projects =  await JSON.parse(new TextDecoder("utf-8").decode(Deno.readFileSync("C:/Users/Admin/Documents/git/roehh/data/projects.json")));
+    const projects = await (await fetch("https://raw.githubusercontent.com/RoeHH/roehh/main/data/projects.json")).json();  
     
     return ctx.render({ projects , user: ctx.state.user});
   },
