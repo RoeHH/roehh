@@ -11,7 +11,6 @@ export const handler: Handlers<
   CtxState
 > = {
   async GET(_req, ctx) {
-    await updateKvWithMongoData();
 
     const projects = await getProjects();
 

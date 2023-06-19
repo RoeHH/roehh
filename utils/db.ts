@@ -40,6 +40,7 @@ export async function updateKvWithMongoData() {
       await kv.set(["roehh", "projects", project.number.toString()], project);
     });
   });
+  return;
 }
 
 

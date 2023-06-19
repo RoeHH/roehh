@@ -1,7 +1,7 @@
 import { OAuth2Client } from "https://deno.land/x/oauth2_client@v0.2.1/mod.ts";
 
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
-import { isNamedExportBindings } from "https://deno.land/x/ts_morph@16.0.0/common/typescript.js";
+
 const secrets = {
   clientId: Deno.env.get("clientId"),
   clientSecret: Deno.env.get("clientSecret"),
@@ -30,7 +30,7 @@ export const oauth2Client = new OAuth2Client({
 
 export const gitHubApi = {
   async getUserData(accessToken: string): Promise<User> {
-   
+
     const response = await fetch("https://api.github.com/user", {
       headers: {
         Authorization: `token ${accessToken}`,
