@@ -16,7 +16,7 @@ export const handler: Handlers<
 
     return ctx.render({
       projects,
-      user: ctx.state.user?.userId === 66622055 ? ctx.state.user : undefined,
+      user: ctx.state.user,
     });
   },
 };

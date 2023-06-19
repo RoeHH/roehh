@@ -33,11 +33,10 @@ export async function handler(
 
   const accessToken = (await oauth2Client.code.getToken(req.url)).accessToken;
 
-  const user = await gitHubApi.getUserData(accessToken)
-  ctx.state.user = user
+  url.searchParams.delete("code")
   
 
-  const response = await ctx.next();
+  const response = new Response(undefined, {status: 302 , headers: {'location': url.href }});
   setCookie(response.headers, {
     name: "gh_token",
     value: accessToken,
@@ -46,31 +45,4 @@ export async function handler(
   });
   return response
  
-
-
-
-
-  /*
-  ctx.state.lists = [];
-  const listsString = getCookies(req.headers).lists;
-  if(listsString !== undefined) {
-    const lists = listsString.split("-")    
-    for (const list of lists) {
-      ctx.state.lists.push(await db.getTodoList(list) || { name: list, todos: [] });
-    }
-  }
-  
-
-  
-  req.headers.get("Cookie")?.split(";").map((cookie) => {
-    console.log(cookie.split("=")[1]);
-    
-    const list = db.getTodoList(cookie.split("=")[1])
-    ctx.state.lists.push(list);
-    console.log(list);
-    
-  })*/
-  const resp = await ctx.next();
-
-  return resp;
 }
