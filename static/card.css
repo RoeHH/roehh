@@ -57,6 +57,10 @@ body {
   margin-left: -300px;
 }
 
+.card-edit h2, h3, p {
+  margin: 5px;
+}
+
 .card-author {
   position: relative;
   display: grid;

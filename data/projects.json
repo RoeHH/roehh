@@ -90,13 +90,6 @@
     "repository": "https://gitlab.wuersch.org/iccee0/roeh-x-cli.git"
   },
   {
-    "month": "Mai Juni 21",
-    "title": "roeh-x-cli",
-    "description1": "A deno command to commit roeh.yml files to MongoDB.",
-    "description2": "Erstelt um einfacher inhalt für roeh.ch zu erfassen. Und um deno\r\n            Module an einem Ort verwalten zu können. Löst die Lösung mit den\r\n            Markdown dataein ab.",
-    "repository": "https://gitlab.wuersch.org/iccee0/roeh-cli.git"
-  },
-  {
     "month": "September 21",
     "title": "roeh-Api",
     "description1": "A API to get rid of credentials in the runroeh command",
