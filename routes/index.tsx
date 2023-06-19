@@ -3,7 +3,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { User } from "../utils/oauth2.ts";
 import { CtxState } from "./_middleware.ts";
 import { Project } from "../model/Project.d.ts";
-import { getProjects } from "../utils/db.ts";
+import { getProjects, updateKvWithMongoData } from "../utils/db.ts";
 import { CardAuthor } from "../components/CardAuthor.tsx";
 
 export const handler: Handlers<
@@ -11,6 +11,7 @@ export const handler: Handlers<
   CtxState
 > = {
   async GET(_req, ctx) {
+    await updateKvWithMongoData();
     const projects = await getProjects();
 
     return ctx.render({
