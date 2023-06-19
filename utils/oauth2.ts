@@ -1,6 +1,7 @@
 import { OAuth2Client } from "https://deno.land/x/oauth2_client@v0.2.1/mod.ts";
 
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
+import { isNamedExportBindings } from "https://deno.land/x/ts_morph@16.0.0/common/typescript.js";
 const secrets = {
   clientId: Deno.env.get("clientId"),
   clientSecret: Deno.env.get("clientSecret"),
@@ -21,7 +22,7 @@ export const oauth2Client = new OAuth2Client({
   clientSecret: secrets.clientSecret || "",
   authorizationEndpointUri: "https://github.com/login/oauth/authorize",
   tokenUri: "https://github.com/login/oauth/access_token",
-  redirectUri: "http://localhost:8000/",
+  redirectUri: Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://roeh.ch" : "http://localhost:8000/",
   defaults: {
     scope: "read:user",
   },
@@ -45,5 +46,11 @@ export const gitHubApi = {
       userName: userData.name,
       avatarUrl: userData["avatar_url"],
     };
+  },
+  async getAdminOrFuckOf(accessToken: string): Promise<User | undefined> {
+    const currentUser = await this.getUserData(accessToken)
+    if(currentUser.userId === 66622055)
+      return currentUser
+    return undefined
   }
 }

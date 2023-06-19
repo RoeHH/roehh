@@ -16,7 +16,7 @@ export async function handler(
 
   const maybeAccessToken = getCookies(req.headers)["gh_token"];
   if (maybeAccessToken) {
-    const user = await gitHubApi.getUserData(maybeAccessToken)
+    const user = await gitHubApi.getAdminOrFuckOf(maybeAccessToken)
     if (user) {
       ctx.state.user = user
       return await ctx.next();

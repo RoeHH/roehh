@@ -12,6 +12,7 @@ export const handler: Handlers<
 > = {
   async GET(_req, ctx) {
     await updateKvWithMongoData();
+
     const projects = await getProjects();
 
     return ctx.render({
