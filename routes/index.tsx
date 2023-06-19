@@ -11,7 +11,6 @@ export const handler: Handlers<
   CtxState
 > = {
   async GET(_req, ctx) {
-
     const projects = await getProjects();
 
     return ctx.render({
@@ -67,9 +66,13 @@ export default function Home(
             </header>
             <p>{project.description1}</p>
             <p>{project.description2}</p>
-            <p>
-              Repository: <a href={project.repository}>Open Repository</a>
-            </p>
+            {project.repository
+              ? (
+              <p>
+                Repository: <a href={project.repository}>Open Repository</a>
+              </p>
+            )
+            : ""}
             {project.app
               ? (
                 <p>
@@ -85,31 +88,27 @@ export default function Home(
         <form class="card card-edit">
           <header class="card-header">
             <h3>
-              Monat/Jahr:<br />
-              <input type="text"></input>
+              <input type="text" placeholder="Month/Date" id="date"></input>
             </h3>
             <h2>
-              Titel:<br />
-              <input type="text"></input>
+              <input type="text" placeholder="Title" id="title"></input>
             </h2>
           </header>
           <p>
-            Kurz Beschrieb:<br />
-            <textarea id="w3review" name="w3review" rows="2" cols="30">
+            <textarea id="description1" placeholder="Short description" rows="2" cols="30">
             </textarea>
           </p>
           <p>
-            Beschreibung:<br />
-            <textarea id="w3review" name="w3review" rows="4" cols="30">
+            <textarea id="description2" placeholder="Project journey description" rows="4" cols="30">
             </textarea>
           </p>
           <p>
-            Repository:<br />
-            <input type="text"></input>
+            Repository:
+            <input type="url" id="repository"></input>
           </p>
           <p>
-            App:<br />
-            <input type="text"></input>
+            App:
+            <input type="url" id="app"></input>
           </p>
           <button type="submit">Submit</button>
           <CardAuthor />

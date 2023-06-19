@@ -57,10 +57,6 @@ body {
   margin-left: -300px;
 }
 
-.card-edit h2, h3, p {
-  margin: 5px;
-}
-
 .card-author {
   position: relative;
   display: grid;
@@ -236,4 +232,29 @@ h2 {
 
 .about li {
   margin-bottom: 10px;
+}
+
+.card-edit button {
+  background: none;
+  border: none;
+  color: #ff8a00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card-edit button:hover {
+  transform: scale(1.1);
+}
+
+.card-edit input,textarea  {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background: none;
+  border: none;
+  display: inline;
+  font-family: inherit;
+  padding: none;
+  width: 90%;
 }
