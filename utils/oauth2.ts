@@ -22,7 +22,7 @@ export const oauth2Client = new OAuth2Client({
   clientSecret: secrets.clientSecret || "",
   authorizationEndpointUri: "https://github.com/login/oauth/authorize",
   tokenUri: "https://github.com/login/oauth/access_token",
-  redirectUri: Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://roeh.ch" : "http://localhost:8000/",
+  redirectUri: Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://roeh.ch/" : "http://localhost:8000/",
   defaults: {
     scope: "read:user",
   },
