@@ -3,15 +3,17 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { User } from "../utils/oauth2.ts";
 import { CtxState } from "./_middleware.ts";
 import { Project } from "../model/Project.d.ts";
-import { getProjects, updateKvWithMongoData } from "../utils/db.ts";
+import { getProjects, updateKvWithMongoDataAndGetProjects } from "../utils/db.ts";
 import { CardAuthor } from "../components/CardAuthor.tsx";
 
 export const handler: Handlers<
   { projects: Project[]; user: User | undefined },
   CtxState
 > = {
-  async GET(_req, ctx) {
-    const projects = await getProjects();
+  async GET(req, ctx) {
+    const projects = new URL(req.url).searchParams.get("reload") === "true" && ctx.state.user 
+                      ? await updateKvWithMongoDataAndGetProjects()
+                      : await getProjects();
 
     return ctx.render({
       projects,
@@ -26,7 +28,7 @@ export default function Home(
   return (
     <>
       <Head>
-        <title>Roeh</title>
+        <title>RoeH</title>
         <link rel="stylesheet" href="card.css" />
       </Head>
 
