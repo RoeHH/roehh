@@ -5,7 +5,40 @@ import { Project } from "../model/Project.d.ts";
 const kv = await Deno.openKv();
 
 export async function updateKvWithMongoData() {
+  const db = getDB();
 
+  const projectsCollection = db.collection<Project>("projects");
+
+  //Clear kv
+  for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
+    await kv.delete(entry.key);
+  }
+
+  //Fill kv
+  const projects = await projectsCollection.find({})
+  projects.forEach(async (project) => {
+    await kv.set(["roehh", "projects", project.number?.toString()], project);
+  });
+}
+
+export async function getProjects() {
+  const projects: Project[] = [];
+  for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
+    projects.push(entry.value);
+  }
+  return projects.sort((a, b) => (a.number || 0) - (b.number || 0));
+}
+
+export async function insertProject(project: Project) {
+  const number = (await getProjects()).length + 1;  
+  await kv.set(["roehh", "projects", number.toString()], {...project, number});
+  
+  const db = getDB();
+  const projectsCollection = db.collection<Project>("projects");
+  await projectsCollection.insertOne({...project, number});
+}
+
+function getDB() {
   //init MongoDb
   const secrets = {
     key: Deno.env.get("MONGO_DATA_API_KEY"),
@@ -26,31 +59,5 @@ export async function updateKvWithMongoData() {
     },
   });
 
-  const db = client.database("roehh");
-  const projectsCollection = db.collection<Project>("projects");
-
-  //Clear kv
-  for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
-    await kv.delete(entry.key);
-  }
-
-  //Fill kv
-  const projects = await projectsCollection.find({})
-  projects.forEach(async (project) => {
-    await kv.set(["roehh", "projects", project.number?.toString()], project);
-  });
-}
-
-
-export async function getProjects() {
-  const projects: Project[] = [];
-  for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
-    projects.push(entry.value);
-  }
-  return projects.sort((a, b) => (a.number || 0) - (b.number || 0));
-}
-
-export async function insertProject(project: Project) {
-  const number = (await getProjects()).length + 1;  
-  await kv.set(["roehh", "projects", number.toString()], {...project, number});
+  return client.database("roehh");
 }
