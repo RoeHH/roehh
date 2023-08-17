@@ -1,9 +1,9 @@
 export interface Project {
-  number: number;
+  number?: number;
   month: string;
   title: string;
   description1: string;
   description2: string;
-  repository: string;
-  app: string;
+  repository: string | undefined;
+  app: string | undefined;
 }

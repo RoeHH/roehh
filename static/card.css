@@ -138,6 +138,9 @@ h2:hover {
 .projects-header {
   font-size: 30px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 
 header {
@@ -257,4 +260,14 @@ h2 {
   font-family: inherit;
   padding: none;
   width: 90%;
+}
+
+.reload {
+  width: 0;
+}
+
+.reload button{
+  position: inherit;
+  background: none;
+  border: none;
 }

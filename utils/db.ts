@@ -4,7 +4,7 @@ import { Project } from "../model/Project.d.ts";
 
 const kv = await Deno.openKv();
 
-export async function updateKvWithMongoDataAndGetProjects() {
+export async function updateKvWithMongoData() {
 
   //init MongoDb
   const secrets = {
@@ -37,9 +37,8 @@ export async function updateKvWithMongoDataAndGetProjects() {
   //Fill kv
   const projects = await projectsCollection.find({})
   projects.forEach(async (project) => {
-    await kv.set(["roehh", "projects", project.number.toString()], project);
+    await kv.set(["roehh", "projects", project.number?.toString()], project);
   });
-  return await projects;
 }
 
 
@@ -48,5 +47,10 @@ export async function getProjects() {
   for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
     projects.push(entry.value);
   }
-  return projects.sort((a, b) => a.number - b.number);
+  return projects.sort((a, b) => (a.number || 0) - (b.number || 0));
+}
+
+export async function insertProject(project: Project) {
+  const number = (await getProjects()).length + 1;  
+  await kv.set(["roehh", "projects", number.toString()], {...project, number});
 }

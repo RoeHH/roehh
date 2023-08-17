@@ -36,7 +36,7 @@ export async function handler(
   url.searchParams.delete("code")
   
 
-  const response = new Response(undefined, {status: 302 , headers: {'location': url.href }});
+  const response = Response.redirect(url.href);
   setCookie(response.headers, {
     name: "gh_token",
     value: accessToken,
