@@ -221,12 +221,15 @@ h2 {
 }
 
 
-@media screen and (max-height: 840px) {
+@media screen and (max-height: 940px) {
   .about {
-    gap: calc(100vh - 660px);
+    gap: calc(100vh - 794px);
+  }
+  .about iframe {
+    margin-top: 0 !important;
   }
   header {
-    height: calc(100vh + 200px);
+    height: calc(100vh + 152px + calc(100vh - 794px));
   }
 }
 
