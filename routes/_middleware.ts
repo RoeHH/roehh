@@ -10,10 +10,6 @@ export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext<CtxState>,
 ) {
-  if(new URL(req.url).pathname.split("/")[1] === "favicon.ico") {
-    return fetch("https://roeh.ch/img/logo.png");
-  }
-
   const maybeAccessToken = getCookies(req.headers)["gh_token"];
   if (maybeAccessToken) {
     const user = await gitHubApi.getAdminOrFuckOf(maybeAccessToken)
