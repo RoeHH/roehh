@@ -1,4 +1,3 @@
-
 const db = await Deno.openKv();
 
 type ReceiverId = "updateGithubData" 
