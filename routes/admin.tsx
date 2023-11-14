@@ -5,6 +5,8 @@ import { CtxState } from "./_middleware.ts";
 import { Project } from "../model/Project.d.ts";
 import { getProjects, updateKvWithMongoData, insertProject } from "../utils/db.ts";
 import { CardAuthor } from "../components/CardAuthor.tsx";
+import { GHMonth } from "../components/github/month.tsx";
+import { GHActivity } from "../components/github/activity.tsx";
 
 interface AdminPagePageprops { 
   projects: Project[]; 
@@ -51,6 +53,7 @@ export default function Home(
       <Head>
         <title>RoeH</title>
         <link rel="stylesheet" href="card.css" />
+        <link rel="stylesheet" href="history.css" />
       </Head>
 
       <header>
@@ -75,11 +78,12 @@ export default function Home(
                 <li>Ruswil, Switzerland</li>
               </ul>
             </div>
-            <iframe style="border-radius:12px; margin: auto;" src="https://open.spotify.com/embed/playlist/37i9dQZF1EphN67AaXPTwX?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
+            {/*<iframe style={{borderRadius: '12px', margin: 'auto'}} src="https://open.spotify.com/embed/playlist/37i9dQZF1EphN67AaXPTwX?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>*/}
           </div>
         </section>
       </header>
+
+      <GHActivity />
 
       <h2 class="projects-header">Projects
         {data.user ? (

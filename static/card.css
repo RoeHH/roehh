@@ -6,6 +6,7 @@ body {
   background-color: #17141d;
   color: white;
   font-family: 'DM Mono', monospace;
+  scroll-snap-type: mandatory;
 }
 
 .card-list {
@@ -296,3 +297,4 @@ h2 {
   background: none;
   border: none;
 }
+
