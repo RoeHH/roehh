@@ -13,7 +13,7 @@ export async function handler(
 ) {
 
   const { pathname, searchParams, href, origin } = new URL(req.url);
-  
+
   const allowedProtocols = ["https://", "http://", "ftp://", "ftps://", "s"];
   if (allowedProtocols.some(protocol => pathname.substring(1).startsWith(protocol))) {
     const short = await kv.get(["shorts", pathname.substring(1)], { consistency: "eventual" });
@@ -35,7 +35,7 @@ export async function handler(
   }
 
  // This is an oauth callback request.
-  const code = searchParams.get("code");  
+  const code = searchParams.get("code");
   if (!code) {
     return await ctx.next();
   }
@@ -43,7 +43,7 @@ export async function handler(
   const accessToken = (await oauth2Client.code.getToken(req.url)).accessToken;
 
   searchParams.delete("code")
-  
+
 
   const response = new Response(undefined, {status: 302 , headers: {'location': href }});
   setCookie(response.headers, {
@@ -53,7 +53,7 @@ export async function handler(
     httpOnly: true,
   });
   return response
- 
+
 }
 
 const getNewShortId = async (): Promise<string> => {

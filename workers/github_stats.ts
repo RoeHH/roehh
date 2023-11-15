@@ -1,6 +1,6 @@
 const db = await Deno.openKv();
 
-type ReceiverId = "updateGithubData" 
+type ReceiverId = "updateGithubData"
 const receivers: Record<ReceiverId, Function> = {
     updateGithubData : (message: string)=>{
         console.log(message);

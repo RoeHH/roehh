@@ -8,8 +8,8 @@ import { CardAuthor } from "../components/CardAuthor.tsx";
 import { GHMonth } from "../components/github/month.tsx";
 import { GHActivity } from "../components/github/activity.tsx";
 
-interface AdminPagePageprops { 
-  projects: Project[]; 
+interface AdminPagePageprops {
+  projects: Project[];
   user: User | undefined
 }
 
