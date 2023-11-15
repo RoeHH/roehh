@@ -1,6 +1,7 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getCookies, setCookie } from "https://deno.land/std@0.146.0/http/cookie.ts"
 import { oauth2Client, gitHubApi, User } from "../utils/oauth2.ts";
+const kv = await Deno.openKv();
 
 export interface CtxState {
   user: User | undefined
@@ -10,8 +11,18 @@ export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext<CtxState>,
 ) {
-  if(new URL(req.url).pathname.split("/")[1] === "favicon.ico") {
-    return fetch("https://roeh.ch/img/logo.png");
+
+  const { pathname, searchParams, href, origin } = new URL(req.url);
+  
+  const allowedProtocols = ["https://", "http://", "ftp://", "ftps://", "s"];
+  if (allowedProtocols.some(protocol => pathname.substring(1).startsWith(protocol))) {
+    const short = await kv.get(["shorts", pathname.substring(1)], { consistency: "eventual" });
+    if (req.method === "GET" && short.value) return Response.redirect(short.value, 302);
+    if(pathname.substring(1).startsWith("s")) return new Response("Short not found", { status: 404 })
+
+    const id = await getNewShortId();
+    kv.set(["shorts", id], pathname.substring(1))
+    return new Response(`Your Short: ${origin}/${id}`, { status: 202 })
   }
 
   const maybeAccessToken = getCookies(req.headers)["gh_token"];
@@ -24,19 +35,17 @@ export async function handler(
   }
 
  // This is an oauth callback request.
-  const url = new URL(req.url);
-  const code = url.searchParams.get("code");
+  const code = searchParams.get("code");  
   if (!code) {
     return await ctx.next();
   }
 
-
   const accessToken = (await oauth2Client.code.getToken(req.url)).accessToken;
 
-  url.searchParams.delete("code")
+  searchParams.delete("code")
   
 
-  const response = new Response(undefined, {status: 302 , headers: {'location': url.href }});
+  const response = new Response(undefined, {status: 302 , headers: {'location': href }});
   setCookie(response.headers, {
     name: "gh_token",
     value: accessToken,
@@ -46,3 +55,11 @@ export async function handler(
   return response
  
 }
+
+const getNewShortId = async (): Promise<string> => {
+  const id = "s" + Math.random().toString(36).substr(2, 3);
+  if ((await kv.get(["shorts", id], { consistency: "eventual" })).value) {
+    return getNewShortId();
+  }
+  return id;
+};
