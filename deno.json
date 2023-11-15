@@ -5,7 +5,10 @@
     "preview": "deno run -A main.ts"
   },
   "lock": false,
-  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.5.4/",
     "preact": "https://esm.sh/preact@10.18.1",
@@ -17,7 +20,16 @@
     "twind/": "https://esm.sh/twind@0.16.19/"
   },
   "lint": {
-    "rules": { "tags": ["fresh", "recommended", "jsx", "jsxImportSource"] }
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended",
+        "jsx",
+        "jsxImportSource"
+      ]
+    }
   },
-  "exclude": ["**/_fresh/*"]
+  "exclude": [
+    "**/_fresh/*"
+  ]
 }
