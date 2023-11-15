@@ -21,15 +21,8 @@
   },
   "lint": {
     "rules": {
-      "tags": [
-        "fresh",
-        "recommended",
-        "jsx",
-        "jsxImportSource"
-      ]
+      "tags": ["fresh", "recommended", "jsx", "jsxImportSource"]
     }
   },
-  "exclude": [
-    "**/_fresh/*"
-  ]
+  "exclude": ["**/_fresh/*"]
 }
