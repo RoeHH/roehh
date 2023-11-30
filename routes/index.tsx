@@ -25,64 +25,47 @@ export default function Home(
     <>
       <Head>
         <title>RoeH</title>
-        <link rel="stylesheet" href="card.css" />
+        <link rel="stylesheet" href="/stars.scss" />
+        <link rel="stylesheet" href="/card.scss" />
       </Head>
-
-      <header>
-        <div class="header-image">
-          <img src="./images/logo.png" class="logo" />
-          <p></p>
-        </div>
-        <section>
-          <div class="about">
-            <div class="column">
-              <h1 class="header-text">
-                Rouven Hänggi
-              </h1>
-              <ul>
-                <li>
-                  {Math.floor(
-                    (new Date(Date.now()).getTime() -
-                      (new Date("08/20/2005")).getTime()) /
-                      (1000 * 60 * 60 * 24 * 365.25),
-                  )} Years
-                </li>
-                <li>Ruswil, Switzerland</li>
-              </ul>
+        <header>
+          <div class="header-image">
+            <img src="./images/logo.png" class="logo" />
+            <p></p>
+          </div>
+          <section>
+            <div class="about">
+              <div class="column">
+                <h1 class="header-text">
+                  Rouven Hänggi
+                </h1>
+                <ul>
+                  <li>
+                    {Math.floor(
+                      (new Date(Date.now()).getTime() -
+                        (new Date("08/20/2005")).getTime()) /
+                        (1000 * 60 * 60 * 24 * 365.25),
+                    )} Years
+                  </li>
+                  <li>Ruswil, Switzerland</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </header>
+      <section id="universe">
+        <div id="stars">
+          <div id="stars2">
+            <div id="stars3">
+                <img id="rocket" src="./images/astronaut.svg" alt="Cute little astronaut hanging on to an UFO like it is a ballon" />
+                <img id="donut" src="./images/donut.svg" alt="A cute donut planet" />
+                <img id="meditate" src="./images/meditate.svg" alt="A meditating astronaut with a planet halo" />
+              <img id="earth" src="./images/earth.svg" alt="Planet Earth" />
             </div>
           </div>
-        </section>
-      </header>
-
-      <h2 class="projects-header">Projects
-      </h2>
-      <section class="card-list">
-        {data.projects.map((project) => (
-          <article class="card">
-            <header class="card-header">
-              <h3>{project.month}</h3>
-              <h2>{project.title}</h2>
-            </header>
-            <p>{project.description1}</p>
-            <p>{project.description2}</p>
-            {project.repository
-              ? (
-              <p>
-                Repository: <a href={project.repository}>Open Repository</a>
-              </p>
-            )
-            : ""}
-            {project.app
-              ? (
-                <p>
-                  App: <a href={project.app}>Open App</a>
-                </p>
-              )
-              : ""}
-            <CardAuthor />
-          </article>
-        ))}
+        </div>
       </section>
+      <script src="position.js"></script>
     </>
   );
 }

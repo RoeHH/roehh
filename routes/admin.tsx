@@ -9,8 +9,6 @@ import {
   updateKvWithMongoData,
 } from "../utils/db.ts";
 import { CardAuthor } from "../components/CardAuthor.tsx";
-import { GHMonth } from "../components/github/month.tsx";
-import { GHActivity } from "../islands/activity.tsx";
 
 interface AdminPagePageprops {
   projects: Project[];

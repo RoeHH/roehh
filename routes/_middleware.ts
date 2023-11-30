@@ -1,18 +1,29 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getCookies, setCookie } from "https://deno.land/std@0.146.0/http/cookie.ts"
 import { oauth2Client, gitHubApi, User } from "../utils/oauth2.ts";
+import sass from "https://deno.land/x/denosass/mod.ts";
+
 const kv = await Deno.openKv();
 
 export interface CtxState {
   user: User | undefined
 }
 
+
+
 export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext<CtxState>,
 ) {
-
   const { pathname, searchParams, href, origin } = new URL(req.url);
+
+  if (pathname.endsWith(".scss")){
+    const compiledCss = (sass('', {
+      load_paths: [`./static/scss/${pathname}`],
+      style:"compressed"
+    }).to_string('compressed') as Map<string, string>).get(pathname.substring(1).replace(".scss", ""))    
+    return new Response(compiledCss, { headers: { "content-type": "text/css" } });
+  }
   
   const allowedProtocols = ["https://", "http://", "ftp://", "ftps://", "s"];
   if (allowedProtocols.some(protocol => pathname.substring(1).startsWith(protocol))) {
