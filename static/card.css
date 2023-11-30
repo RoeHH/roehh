@@ -6,7 +6,6 @@ body {
   background-color: #17141d;
   color: white;
   font-family: 'DM Mono', monospace;
-  scroll-snap-type: mandatory;
 }
 
 .card-list {
@@ -15,7 +14,7 @@ body {
   padding-top: 2rem;
   overflow-x: scroll;
   margin-left: auto;
- justify-content: center;
+  justify-content: center;
 }
 
 .card-list::-webkit-scrollbar {
