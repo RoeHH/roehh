@@ -7,5 +7,7 @@ export const handler = async (_req: Request, _ctx: FreshContext): Response => {
   for await (const entry of kv.list({ prefix: ["roehh", "projects"] })) {
     a.push(entry.value);
   }
+  console.log(a, 'a');
+  
     return new Response(a);
 };
