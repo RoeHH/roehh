@@ -1,6 +1,6 @@
 import { extract } from "https://deno.land/std@0.163.0/encoding/front_matter.ts";
 
-const DEFAULT_PATH = "./routes/projects";
+const DEFAULT_PATH = "./routes/projects/md";
 
 export interface Post {
   slug: string;

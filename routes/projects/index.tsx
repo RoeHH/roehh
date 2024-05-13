@@ -12,7 +12,6 @@ export const handler: Handlers<
   GET(_req: Request, ctx) {
     return ctx.render({
       projects: getProjects(),
-
       user: ctx.state.user,
     });
   },
@@ -25,7 +24,7 @@ export default function Home(
     <>
       <Head>
         <title>Projects</title>
-        <link rel="stylesheet" href="card.css" />
+        <link rel="stylesheet" href="css/card.css" />
       </Head>
       <Partial name="projects">
         <div class="centered">

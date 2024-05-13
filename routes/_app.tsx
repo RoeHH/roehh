@@ -11,7 +11,7 @@ export default function App({ Component }: AppProps) {
       <body id="img-container" f-client-nav>
         <Component />
       </body>
-      <script src="coursor.js"></script>
+      <script src="js/coursor.js"></script>
     </html>
   );
 }

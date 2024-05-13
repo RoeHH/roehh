@@ -7,12 +7,13 @@ import { Post, getProjects } from "../utils/projects.ts";
 import { CardAuthor } from "../components/CardAuthor.tsx";
 import { renderProjects } from "./projects/index.tsx";
 import { ArrowDown } from "../components/ArrowDown.tsx";
+import { Flugi } from "../components/Flugi.tsx";
 
 export const handler: Handlers<
   { projects: Post[]; user: User | undefined },
   CtxState
 > = {
-  GET(_req: Request, ctx) {    
+  GET(_req: Request, ctx) {
     return ctx.render({
       projects: getProjects(),
       user: ctx.state.user,
@@ -20,20 +21,21 @@ export const handler: Handlers<
   },
 };
 
-export default function Home(
-  { data }: PageProps<{ projects: Post[]; user: User | undefined }>,
-) {
+export default function Home({
+  data,
+}: PageProps<{ projects: Post[]; user: User | undefined }>) {
   return (
     <>
       <Head>
         <title>Rouven Hänggi</title>
-        <link rel="stylesheet" href="card.css" />
-        <link rel="stylesheet" href="pages.css" />
+        <link rel="stylesheet" href="css/card.css" />
+        <link rel="stylesheet" href="css/pages.css" />
+        <link rel="stylesheet" href="css/jubla-page.css" />
       </Head>
       <div id="pages-container">
         <header id="home" class="page">
           <div class="header-image">
-            <img src="./images/logo.png" class="logo" />
+            <img src="./img/logo.png" class="logo" />
             <p></p>
           </div>
           <section>
@@ -55,18 +57,29 @@ export default function Home(
             </div>
           </section>
         </header>
-        <section id="projects" class="page project-page">
-          <h2 class="projects-header">Projects</h2>
+        <section id="jubla" class="page jubla-page">
+          <div class="jubla-page-header">
+            <p class="content">
+              I believe it's crucial to <b>embrace diversity</b> and <br />
+              <b>promote inclusivity</b> at every level of society. <br />
+              <br />
+              This conviction drives my engagement with <b>Jungwacht</b> and
+              especially <b>Jubla Gränzenlos</b>, where we provide a space for
+              youth to thrive.
+            </p>
+          </div>
+          <Flugi />
+        </section>
+        <section id="projects" class="page projects-page">
+          <div class="projects-page-header">
+            <h2>Projects</h2>
+            <p>A collection of all the IT projects I have created so far.</p>
+          </div>
           {renderProjects(data.projects)}
         </section>
-        {/*
-        <section id="hi" class="page">
-          <h2>Coding</h2>
-        </section>
-        */}
       </div>
       <ArrowDown />
-      <script src="pages.js"></script>
+      <script src="js/pages.js"></script>
     </>
   );
 }

@@ -1,9 +1,9 @@
 
 export function ArrowDown() {
   return (
-    <>
+    <div id="arrow-down">
+      <p>About Me</p>
       <svg
-        id="arrow-down"
         class="arrow-down-svg"
         fill="#FFFFFF"
         height="100px"
@@ -37,7 +37,7 @@ export function ArrowDown() {
           ></path>
         </g>
       </svg>
-      <script src="arrow-down.js"></script>
-    </>
+      <script src="js/arrow-down.js"></script>
+    </div>
   );
 }

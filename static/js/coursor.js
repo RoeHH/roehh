@@ -1,7 +1,7 @@
 let backgroundImages = [
   {
-    div: "url(./images/backdrops/wide.png)",
-  }
+    div: "url(./img/backdrops/wide.png)",
+  },
 ];
 const container = document.getElementById("img-container");
 
