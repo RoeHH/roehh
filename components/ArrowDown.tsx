@@ -2,7 +2,7 @@
 export function ArrowDown() {
   return (
     <div id="arrow-down">
-      <p>About Me</p>
+      <p id="arrow-down-text">About Me</p>
       <svg
         class="arrow-down-svg"
         fill="#FFFFFF"

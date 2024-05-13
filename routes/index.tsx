@@ -57,7 +57,18 @@ export default function Home({
             </div>
           </section>
         </header>
-        <section id="jubla" class="page jubla-page">
+        <section id="About Me" class="page about-page">
+          <div class="about-page-header">
+            <h2>About Me</h2>
+            <p>
+              I'm a <b>passionate</b> and <b>curious</b> individual who loves
+              to <b>learn</b> and <b>create</b>.
+              //TODO Finish up the about me section
+            </p>
+          </div>
+          <CardAuthor />
+        </section>
+        <section id="Jubla" class="page jubla-page">
           <div class="jubla-page-header">
             <p class="content">
               I believe it's crucial to <b>embrace diversity</b> and <br />
@@ -70,7 +81,7 @@ export default function Home({
           </div>
           <Flugi />
         </section>
-        <section id="projects" class="page projects-page">
+        <section id="Projects" class="page projects-page">
           <div class="projects-page-header">
             <h2>Projects</h2>
             <p>A collection of all the IT projects I have created so far.</p>
