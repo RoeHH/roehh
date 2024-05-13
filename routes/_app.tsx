@@ -8,9 +8,10 @@ export default function App({ Component }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>roehh</title>
       </head>
-      <body>
+      <body id="img-container" f-client-nav>
         <Component />
       </body>
+      <script src="coursor.js"></script>
     </html>
   );
 }
