@@ -21,7 +21,7 @@ pagesContainer.addEventListener("scroll", () => {
     arrowDown.style.visibility = "visible";
     arrowDownText.textContent = pages[activePageNumber].id;
   }
-  if(pages[activePageNumber - 1].id === "jubla" && !firstloadjublapage) {
+  if(pages[activePageNumber - 1].id === "Jubla" && !firstloadjublapage) {
     const svg = document.getElementById('flugi');
     svg.parentNode.insertBefore(svg.cloneNode(true), svg);
     svg.parentNode.removeChild(svg);
