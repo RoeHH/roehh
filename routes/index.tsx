@@ -30,6 +30,7 @@ export default function Home({
         <title>Rouven Hänggi</title>
         <link rel="stylesheet" href="css/card.css" />
         <link rel="stylesheet" href="css/pages.css" />
+        <link rel="stylesheet" href="css/about-page.css" />
         <link rel="stylesheet" href="css/jubla-page.css" />
       </Head>
       <div id="pages-container">
@@ -58,15 +59,19 @@ export default function Home({
           </section>
         </header>
         <section id="About Me" class="page about-page">
-          <div class="about-page-header">
-            <h2>About Me</h2>
-            <p>
-              I'm a <b>passionate</b> and <b>curious</b> individual who loves
-              to <b>learn</b> and <b>create</b>.
-              //TODO Finish up the about me section
-            </p>
+          // TODO Finish the about page
+          <div id="buble1" class="buble">
+            Handball
           </div>
-          <CardAuthor />
+          <div id="buble2" class="buble">
+            Code
+          </div>
+          <div id="buble3" class="buble">
+            Location
+          </div>
+          <div id="buble4" class="buble">
+            Music
+          </div>
         </section>
         <section id="Jubla" class="page jubla-page">
           <div class="jubla-page-header">

@@ -31,7 +31,7 @@ body {
   bottom: 1rem;
   left: 50vw;
   transform: translateX(-50%);
-  width: 20vw;
+  width: fit-content;
   border-radius: 50%;
 }
 
