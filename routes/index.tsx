@@ -34,11 +34,13 @@ export default function Home({
         <link rel="stylesheet" href="css/jubla-page.css" />
       </Head>
       <div id="pages-container">
-        <header id="home" class="page">
+        <header id="home" class="page header-page">
           <div class="header-image">
             <img src="./img/logo.png" class="logo" />
             <p></p>
           </div>
+        </header>
+        <section id="About Me" class="page about-page">
           <section>
             <div class="about">
               <div class="column">
@@ -57,21 +59,6 @@ export default function Home({
               </div>
             </div>
           </section>
-        </header>
-        <section id="About Me" class="page about-page">
-          // TODO Finish the about page
-          <div id="buble1" class="buble">
-            Handball
-          </div>
-          <div id="buble2" class="buble">
-            Code
-          </div>
-          <div id="buble3" class="buble">
-            Location
-          </div>
-          <div id="buble4" class="buble">
-            Music
-          </div>
         </section>
         <section id="Jubla" class="page jubla-page">
           <div class="jubla-page-header">
