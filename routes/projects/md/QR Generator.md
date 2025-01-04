@@ -6,4 +6,6 @@ repository: https://github.com/RoeHH/QR
 app: https://qr.roeh.ch/
 number: 18
 ---
-The interesting thing about this project is that all code is in one file on 57 lines
+
+The interesting thing about this project is that all code is in one file on 57
+lines

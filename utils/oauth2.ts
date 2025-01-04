@@ -10,11 +10,10 @@ if (!secrets.clientId || !secrets.clientSecret) {
   throw new Error("environment variable clientSecret or clientId not set");
 }
 
-
 export interface User {
-  userId: number
-  userName: string
-  avatarUrl: string
+  userId: number;
+  userName: string;
+  avatarUrl: string;
 }
 
 export const oauth2Client = new OAuth2Client({
@@ -22,7 +21,9 @@ export const oauth2Client = new OAuth2Client({
   clientSecret: secrets.clientSecret || "",
   authorizationEndpointUri: "https://github.com/login/oauth/authorize",
   tokenUri: "https://github.com/login/oauth/access_token",
-  redirectUri: Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://roeh.ch/" : "http://localhost:8000/",
+  redirectUri: Deno.env.get("DENO_DEPLOYMENT_ID")
+    ? "https://roeh.ch/"
+    : "http://localhost:8000/",
   defaults: {
     scope: "read:user",
   },
@@ -30,7 +31,6 @@ export const oauth2Client = new OAuth2Client({
 
 export const gitHubApi = {
   async getUserData(accessToken: string): Promise<User> {
-
     const response = await fetch("https://api.github.com/user", {
       headers: {
         Authorization: `token ${accessToken}`,
@@ -39,7 +39,7 @@ export const gitHubApi = {
     if (!response.ok) {
       throw new Error(await response.text());
     }
-    
+
     const userData = await response.json();
     return {
       userId: userData.id,
@@ -48,9 +48,10 @@ export const gitHubApi = {
     };
   },
   async getAdminOrFuckOf(accessToken: string): Promise<User | undefined> {
-    const currentUser = await this.getUserData(accessToken)
-    if(currentUser.userId === 66622055)
-      return currentUser
-    return undefined
-  }
-}
+    const currentUser = await this.getUserData(accessToken);
+    if (currentUser.userId === 66622055) {
+      return currentUser;
+    }
+    return undefined;
+  },
+};

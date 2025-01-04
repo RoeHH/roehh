@@ -15,7 +15,7 @@ export async function updateKvWithMongoData() {
   }
 
   //Fill kv
-  const projects = await projectsCollection.find({})
+  const projects = await projectsCollection.find({});
   projects.forEach(async (project) => {
     await kv.set(["roehh", "projects", project.number?.toString()], project);
   });
@@ -30,12 +30,15 @@ export async function getProjects() {
 }
 
 export async function insertProject(project: Project) {
-  const number = (await getProjects()).length + 1;  
-  await kv.set(["roehh", "projects", number.toString()], {...project, number});
-  
+  const number = (await getProjects()).length + 1;
+  await kv.set(["roehh", "projects", number.toString()], {
+    ...project,
+    number,
+  });
+
   const db = getDB();
   const projectsCollection = db.collection<Project>("projects");
-  await projectsCollection.insertOne({...project, number});
+  await projectsCollection.insertOne({ ...project, number });
 }
 
 function getDB() {

@@ -257,8 +257,13 @@ h2 {
 }
 
 @media screen and (max-width: 700px) {
+
+  .header-text {
+    font-size: 30px;
+  }
+
   .header-image {
-    clip-path: polygon(50% 0px, 100% 0px, 99.72% 85.75%, 50% 100%, 5px 85.75%, 0px 0px);
+    clip-path: polygon(50% 0px, 100% 0px, 100% 85.75%, 50% 100%, 0px 85.75%, 0px 0px);
   }
 
   .logo {

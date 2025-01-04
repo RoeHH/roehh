@@ -12,6 +12,7 @@
   margin-top: 20vh;
   margin-right: 15vw;
   width: 40vw;
+  text-overflow: clip;
 }
 
 .flugi {

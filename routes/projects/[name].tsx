@@ -10,21 +10,23 @@ export const handler: Handlers<Post> = {
     if (post === null) return ctx.renderNotFound();
     return ctx.render(post);
   },
-}
+};
 
 export default function PostPage(props: PageProps<Post>) {
   const post = props.data;
   return (
     <>
       <Head>
-        <style>{`
+        <style>
+          {`
         ul {
             list-style: disc !important;
         }
         li {
           list-style: decimal !important;
         }
-        `}</style>
+        `}
+        </style>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
         <link rel="stylesheet" href="css/projects.css" />
         <title>{post.title}</title>

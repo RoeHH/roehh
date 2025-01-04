@@ -7,4 +7,5 @@ app: https://denoinfo.deno.dev/
 number: 16
 ---
 
-After cloning the ui from deno docs i enhanced it to display the output of deno info
+After cloning the ui from deno docs i enhanced it to display the output of deno
+info
