@@ -46,14 +46,19 @@ export default function Home({
       column: 2,
     },
     {
+      start: 12,
+      lable: "mtg",
+      column: 3,
+    },
+    {
       start: 14,
       lable: "Code",
-      column: 3,
+      column: 4,
     },
     {
       start: 17,
       lable: "D&D",
-      column: 4,
+      column: 5,
     },
   ];
   return (
@@ -98,10 +103,10 @@ export default function Home({
                       <div
                         style={`grid-row: ${start + 2} / ${
                           end ? end + 2 : age + 2
-                        }; margin-left: ${column * 50}px;`}
+                        }; margin-left: ${column * 30}px;`}
                         class="time-span time-span-with-end"
                       >
-                        <h3 class="time-span-label">{lable}</h3>
+                        <p class="time-span-label">{lable}</p>
                       </div>
                     ))}
                   </div>

@@ -14,10 +14,12 @@
 
 .time-line {
   display: grid;
-  grid-template-columns: 1fr 30px 3fr;
+  grid-template-columns: 0 30px min-content;
+  margin-left: auto;
+  margin-right: auto;
+  width: min-content;
   grid-auto-rows: 1fr;
   height: 70vh;
-
 }
 
 .slideDown {
@@ -60,7 +62,7 @@
 .time-line-age {
   grid-column: 2;
   text-align: right;
-  width: 25px;
+  width: 15px;
   margin-right: 5px;
   margin-top: auto;
   margin-bottom: 0;
@@ -70,6 +72,7 @@
   width: 2px;
   grid-column: 3;
   background: #cd9441;
+  text-orientation: mixed;
 }
 
 .time-span::before {
@@ -77,15 +80,19 @@
   display: block;
   position: relative;
   top: 0;
-  left: -50px;
-  width: 50px;
+  left: -30px;
+  width: 30px;
   height: 2px;
   background: #cd9441;
 }
 
 .time-span-label {
   position: relative;
-  left: -1rem;
-  top: 40%;
-  transform: rotate(-90deg);
+  left: -20px;
+  white-space: nowrap;
+  margin: 0;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 100%;
 }

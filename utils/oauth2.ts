@@ -37,7 +37,7 @@ export const gitHubApi = {
       },
     });
     if (!response.ok) {
-      throw new Error(await response.text());
+      return {userId: 0, userName: "unknown", avatarUrl: ""};
     }
 
     const userData = await response.json();
@@ -47,7 +47,7 @@ export const gitHubApi = {
       avatarUrl: userData["avatar_url"],
     };
   },
-  async getAdminOrFuckOf(accessToken: string): Promise<User | undefined> {
+  async getAdminOrFuckOf(accessToken: string): Promise<User | undefined> {   
     const currentUser = await this.getUserData(accessToken);
     if (currentUser.userId === 66622055) {
       return currentUser;
