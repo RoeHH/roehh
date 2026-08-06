@@ -1,6 +1,6 @@
-import { AppProps } from "$fresh/server.ts";
+import { define } from "../utils.ts";
 
-export default function App({ Component }: AppProps) {
+export default define.page(function App({ Component }) {
   return (
     <html>
       <head>
@@ -8,10 +8,9 @@ export default function App({ Component }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>roehh</title>
       </head>
-      <body id="img-container" f-client-nav>
+      <body>
         <Component />
       </body>
-      <script src="js/coursor.js"></script>
     </html>
   );
-}
+});
