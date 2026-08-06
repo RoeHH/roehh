@@ -1,0 +1,17 @@
+.activity {
+  padding: 20px;
+  flex: auto;
+  scroll-snap-stop: always;
+}
+
+.activity .month {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.mist {
+  color: green;
+  fill: green;
+}
